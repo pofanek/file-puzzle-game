@@ -60,7 +60,7 @@ npm run dev        # dev server, usually http://localhost:5173
 
 ```
 src/
-  lib/          corruption layers, ZIP generation, finish check, i18n (PL default, EN)
+  lib/          corruption layers, ZIP generation, finish check, i18n (EN default, PL)
   puzzles/      puzzle registry, external asset links, hidden-page tokens
   pages/        home page (puzzle picker, hints, Finish) and the hidden-page router
   secret/       hidden puzzle pages (Terminal, Rows, Pyramid, Chain, Year, Vault)

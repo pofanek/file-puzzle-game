@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Lang } from '../puzzles/registry'
 
 const DICT = {
@@ -81,8 +81,9 @@ const Ctx = createContext<I18n>(null!)
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(() => {
-    try { return localStorage.getItem('fdg-lang') === 'en' ? 'en' : 'pl' } catch { return 'pl' }
+    try { return localStorage.getItem('fdg-lang') === 'pl' ? 'pl' : 'en' } catch { return 'en' }
   })
+  useEffect(() => { document.documentElement.lang = lang }, [lang])
   const value = useMemo<I18n>(() => ({
     lang,
     setLang: (l) => { setLangState(l); try { localStorage.setItem('fdg-lang', l) } catch { /* ignore */ } },
