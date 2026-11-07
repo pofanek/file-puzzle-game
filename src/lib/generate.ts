@@ -13,7 +13,7 @@ export const CHAINS: Record<Level, { layers: Layer[]; outName: string }> = {
 }
 
 // Exact repair steps per level. They go into instructions.txt and are also shown on the site as the "Repair" hint.
-export const REPAIR: Record<Level, Record<Lang, string>> = {
+const REPAIR_STEPS: Record<Level, Record<Lang, string>> = {
   easy: {
     en: 'Repair: XOR the file with the answer (lowercase), then give it back its original name.',
     pl: 'Naprawa: wykonaj XOR pliku z odpowiedzią (małymi literami), potem przywróć oryginalną nazwę.',
@@ -31,6 +31,17 @@ export const REPAIR: Record<Level, Record<Lang, string>> = {
     pl: 'Naprawa: najpierw zdekoduj Base64, potem odwróć kolejność wszystkich bajtów, potem XOR z odpowiedzią (małymi literami), potem rozszerzenie oryginalne.',
   },
 }
+
+const CYBERCHEF = 'https://gchq.github.io/CyberChef/'
+const OPS: Record<Level, string> = { easy: 'XOR', medium: 'XOR', hard: 'XOR, Reverse', extreme: 'From Base64, Reverse, XOR' }
+
+// Steps plus the tool that does them. This text goes into instructions.txt and the site's "Repair" hint.
+export const REPAIR: Record<Level, Record<Lang, string>> = Object.fromEntries(
+  (Object.keys(REPAIR_STEPS) as Level[]).map((lv) => [lv, {
+    en: `${REPAIR_STEPS[lv].en}\nTool: CyberChef, ${CYBERCHEF} (operations: ${OPS[lv]}). Load your file as input, type the answer as the key (format UTF8) and save the output as a file.`,
+    pl: `${REPAIR_STEPS[lv].pl}\nNarzędzie: CyberChef, ${CYBERCHEF} (operacje: ${OPS[lv]}). Wczytaj plik jako wejście, wpisz odpowiedź jako klucz (format UTF8) i zapisz wynik jako plik.`,
+  }]),
+) as Record<Level, Record<Lang, string>>
 
 export const zipName = (fileName: string) => `${fileName.replace(/\.[^./\\]+$/, '') || fileName}.zip`
 
