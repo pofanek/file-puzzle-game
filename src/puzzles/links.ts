@@ -18,12 +18,12 @@ export const LINKS: Record<string, string> = {
   h4_youtube: 'https://youtu.be/ij5b4St3Qqc',
   h5_pastebin: 'https://pastebin.com/L50P1eXA',
   h5_pastebin2: 'https://pastebin.com/t1kSZ83Z', // text: "the second carving says: dune" (its ID goes on carving 2)
-  x1_gif: '', // relative or absolute URL of icon.gif (frame 58 = "glacier")
-  x1_mp3: '', // tempest.mp3
-  x1_sky: '', // sky photo with EXIF
-  x2_fish: '', // fish picture, top-left 4 pixels per the X2 note
-  x3_imgur_rainbow: '',
-  x3_imgur_mayan: '',
-  x4_mediafire: '', // link to glyphic.zip
-  x5_pastebin_1: '',
+  x1_gif: './x1/icon.gif', // URL of icon.gif (frame 58 = "glacier"); icon.png next to it is the level-7 tab icon
+  x1_mp3: './x1/tempest.mp3', // tempest.mp3
+  x1_sky: './x1/sky.jpg', // sky photo with EXIF
+  x2_leaf: './x2/leaf.png', // leaf picture, top-left 4 pixels per the X2 note
+  x3_imgur_rainbow: './x3/rainbow.png', // hosted in the site; an Imgur link works too
+  x3_imgur_mayan: './x3/mayan.png',
+  x4_mediafire: 'https://www.mediafire.com/file/ofqxry240bkugj2/glyphic.zip/file', // link to glyphic.zip
+  x5_pastebin_1: 'https://pastebin.com/hY2XLv4e',
 }

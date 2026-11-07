@@ -8,7 +8,7 @@ const GREEN = [
   '#247C31 #04DA31 #0F8010 #276F0F #372613 #2FF903 #189F07 #048E17 #258933 #139A3C #035535 #392E1D #35260D #24732D',
 ].map((r) => r.split(' '))
 
-const COLOURS = ['red', 'crimson', 'scarlet', 'maroon', 'coral', 'salmon', 'amber', 'olive', 'teal', 'navy', 'indigo', 'violet', 'plum', 'ivory', 'khaki', 'sienna', 'umber', 'azure', 'cyan', 'lime']
+const COLOURS = ['rust', 'crimson', 'scarlet', 'maroon', 'copper', 'russet', 'amber', 'ochre', 'bronze', 'umber', 'sienna', 'mahogany', 'burgundy', 'gold', 'khaki', 'brick', 'cinnamon', 'saffron', 'tawny', 'sepia']
 function colorsTxt(): string {
   let s = 7
   const rnd = () => (s = (s * 1103515245 + 12345) & 0x7fffffff)
@@ -19,21 +19,22 @@ function colorsTxt(): string {
   }).join('\n')
 }
 
-function Red({ sub }: { sub: string }) {
+function Autumn({ sub }: { sub: string }) {
   if (sub === 'colors.txt') return <Page><pre className="code mt-8 !whitespace-pre h-[70vh] overflow-auto">{colorsTxt()}</pre></Page>
-  if (sub === '2604.txt') return <Page><p className="mono">the code is bkpsou</p></Page>
+  if (sub === '2604.txt') return <Page><p className="mono">the code is tyrrau</p></Page>
   return (
-    <Page eyebrow="Red">
-      <style>{`/* fish */ .fish { opacity: 1; } /* fish */ .fin { color: #c01012; /* fi5h */ } /* fish */`}</style>
-      {LINKS.x2_fish && <img src={LINKS.x2_fish} alt="" className="mt-8 rounded-2xl max-w-full" />}
+    <Page eyebrow="Autumn">
+      <Comment text="the leaf keeps its first four pixels. numbers are letters." />
+      <style>{`/* leaf */ .leaf { opacity: 1; } /* leaf */ .stem { color: #c01012; /* c0l0r5 */ } /* leaf */`}</style>
+      {LINKS.x2_leaf && <img src={LINKS.x2_leaf} alt="" className="mt-8 rounded-2xl max-w-full" />}
     </Page>
   )
 }
 
-function Green({ sub }: { sub: string }) {
-  if (['φθόνος.png', 'ζήλια.png', 'ζηλεύω.png'].includes(sub)) return <Page><p className="mono">the code is rermlr</p></Page>
+function Spring({ sub }: { sub: string }) {
+  if (['φθόνος.png', 'ζήλια.png', 'ζηλεύω.png'].includes(sub)) return <Page><p className="mono">the code is hetnrn</p></Page>
   return (
-    <Page eyebrow="Green">
+    <Page eyebrow="Spring">
       <Comment text="G % R == 0 or G % B == 0 -> filled" />
       <Comment text="[your result, in a language one letter away from this colour].png" />
       <div className="mt-8 grid gap-1 w-full" style={{ gridTemplateColumns: 'repeat(14, 1fr)' }}>
@@ -43,39 +44,39 @@ function Green({ sub }: { sub: string }) {
   )
 }
 
-function Blue({ sub }: { sub: string }) {
-  useTitle('Blue', 'id')
+function Winter({ sub }: { sub: string }) {
+  useTitle('Winter', 'id')
   if (sub === 'email') {
     return (
-      <Page eyebrow="Blue">
+      <Page eyebrow="Winter">
         <pre className="code mt-8">{'Aug 5, Nov 2, Jul 10, Sep 12, Feb 3\nC. Bigelow & K. Holmes'}</pre>
       </Page>
     )
   }
-  if (sub === 'beach.txt') return <Page><p className="mono">the code is onicos</p></Page>
+  if (sub === 'beach.txt') return <Page><p className="mono">the code is eausod</p></Page>
   return (
-    <Page eyebrow="Blue">
+    <Page eyebrow="Winter">
       <Comment text="outer layer of the tooth" />
       <p className="lede">Selamat datang.</p>
     </Page>
   )
 }
 
-export default function Prism() {
+export default function Year() {
   const parts = (useParams()['*'] ?? '').split('/').filter(Boolean).map(decodeURIComponent)
   const [branch, sub = ''] = parts
   if (!branch) {
     return (
-      <Page eyebrow="Prism" title="Light splits here">
+      <Page eyebrow="Year wheel" title="The year turns here">
         <div className="flex gap-3 mt-8">
-          {['red', 'green', 'blue'].map((c) => <Link key={c} to={c} className="btn btn-ghost">{c}</Link>)}
+          {['autumn', 'spring', 'winter'].map((c) => <Link key={c} to={c} className="btn btn-ghost">{c}</Link>)}
         </div>
       </Page>
     )
   }
-  if (branch === 'red') return <Red sub={sub} />
-  if (branch === 'green') return <Green sub={sub} />
-  if (branch === 'blue') return <Blue sub={sub} />
-  if (branch === 'brokenprismcolours') return <Page><p className="metal-text text-4xl font-semibold">The light is whole. Your key: spectrum</p></Page>
+  if (branch === 'autumn') return <Autumn sub={sub} />
+  if (branch === 'spring') return <Spring sub={sub} />
+  if (branch === 'winter') return <Winter sub={sub} />
+  if (branch === 'theyearturnsaround') return <Page><p className="metal-text text-4xl font-semibold">The year has come round. Your key: solstice</p></Page>
   return <Nothing />
 }

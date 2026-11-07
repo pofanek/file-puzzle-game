@@ -4,6 +4,6 @@ export const TOKENS = {
   rows: 'saxveqojhikyixgsheeo',
   pyramid: 'ibavwplgwwsiauzzwptj',
   chain: 'jxinzikfaqutevvhagat',
-  prism: 'xhbxkbtjrgiowhphycie',
+  year: 'xhbxkbtjrgiowhphycie',
   vault: 'vwxxkovfzbffoxuvouea',
 } as const

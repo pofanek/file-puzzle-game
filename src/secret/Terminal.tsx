@@ -15,7 +15,7 @@ export default function Terminal() {
     let out = 'unknown command'
     if (c === 'help') out = HELP
     else if (c === 'amber') out = AMBER
-    else if (c === 'vault') out = LINKS.h3_imgur || '(link missing)'
+    else if (c === 'vault') out = (LINKS.h3_imgur || '(link missing)') + '\nthe old numbers count the alphabet.'
     setLines((l) => [...l, `> ${cmd}`, out])
     setVal('')
     setTimeout(() => end.current?.scrollIntoView(), 0)

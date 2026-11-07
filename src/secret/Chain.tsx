@@ -20,15 +20,54 @@ function Console() {
   useEffect(() => {
     const w = window as unknown as Record<string, unknown>
     w.whatstheanswer = () => { console.log('orbit'); return 'orbit' }
+    console.log('this page defines one function. its name is the question on the wall.')
     return () => { delete w.whatstheanswer }
   }, [])
   return null
 }
 
+
+// 26 white keys C3..G6 with the QWERTY letters printed on them (reading order Q..P, A..L, Z..M).
+const KEY_LETTERS = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+const WHITE = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+function PianoKeys() {
+  const w = 28
+  const white = [...KEY_LETTERS].map((ch, i) => ({ ch, x: i * w, note: WHITE[i % 7], oct: 3 + Math.floor(i / 7) }))
+  // a black key sits after every white key except E and B
+  const black = white.filter((k) => k.note !== 'E' && k.note !== 'B' && k.x + w < 26 * w)
+  return (
+    <div className="card mt-8 overflow-x-auto">
+      <svg viewBox={`0 0 ${26 * w} 130`} className="min-w-[640px] w-full" role="img" aria-label="piano keyboard, C3 to G6, with a letter on every white key">
+        {white.map((k) => (
+          <g key={k.x}>
+            <rect x={k.x + 0.5} y={0} width={w - 1} height={110} rx={3} className="fill-white" />
+            <text x={k.x + w / 2} y={100} textAnchor="middle" fontSize={13} className="fill-black" fontFamily="monospace">{k.ch}</text>
+            {k.note === 'C' && <text x={k.x + w / 2} y={125} textAnchor="middle" fontSize={11} className="fill-white" fontFamily="monospace">C{k.oct}</text>}
+          </g>
+        ))}
+        {black.map((k) => <rect key={k.x} x={k.x + w - 8} y={0} width={16} height={68} rx={2} className="fill-black" stroke="#555" strokeWidth={0.5} />)}
+      </svg>
+    </div>
+  )
+}
+
 export default function Chain() {
   const slug = (useParams()['*'] ?? '').split('/')[0].toLowerCase()
-  const title: Record<string, string> = { echo: 'R34D 7H3 73X7', compass: 'execution', orbit: '58' }
+  const title: Record<string, string> = { echo: 'R34D 7H3 73X7', c0mp455: 'execution', orbit: '58' }
   useTitle(title[slug] ?? '·')
+
+  // Level 7: the tab icon is icon.png (a still of the GIF). The player turns it into icon.gif.
+  useEffect(() => {
+    if (slug !== 'orbit' || !LINKS.x1_gif) return
+    const link = document.querySelector<HTMLLinkElement>('link[rel~="icon"]') ?? document.head.appendChild(Object.assign(document.createElement('link'), { rel: 'icon' }))
+    const prev = { href: link.getAttribute('href'), type: link.getAttribute('type') }
+    link.setAttribute('href', LINKS.x1_gif.replace(/\.gif$/, '.png'))
+    link.setAttribute('type', 'image/png')
+    return () => {
+      if (prev.href) link.setAttribute('href', prev.href); else link.removeAttribute('href')
+      if (prev.type) link.setAttribute('type', prev.type); else link.removeAttribute('type')
+    }
+  }, [slug])
 
   switch (slug) {
     case 'begin':
@@ -73,10 +112,11 @@ export default function Chain() {
             <button className="btn btn-ghost self-start" onClick={() => saveText('compass.png', '7H3 4N5W3R 15 C0MP455')}>download compass.png</button></div>
         </Page>
       )
-    case 'compass':
+    case 'c0mp455':
       return (
         <Page eyebrow="Level 6">
           <Console />
+          <p className="lede">what's the answer?</p>
           <div className="card mt-8 mono grid gap-2"><span>IMAGERY</span><span>FUNCTIONALITY</span><span>ENTRY</span></div>
         </Page>
       )
@@ -86,7 +126,7 @@ export default function Chain() {
           <Comment text="python" />
           <p className="mono text-3xl">[:3]</p>
           <p className="text-5xl mt-6">👀 😕 🎁</p>
-          <div className="mt-8"><Dl href={LINKS.x1_gif} label="download icon" /></div>
+          <p className="text-soft mt-6">Some things are too quiet to see. Make them louder.</p>
         </Page>
       )
     case 'glacier':
@@ -99,14 +139,15 @@ export default function Chain() {
     case 'tempest':
       return (
         <Page eyebrow="Level 9">
-          <p className="lede">empty three? peon, gee!</p>
-          <div className="mt-8"><Dl href={LINKS.x1_mp3} label="download tempest" /></div>
+          <p className="lede">Six notes. The keys are the keys.</p>
+          <PianoKeys />
+          <div className="mt-8"><Dl href={LINKS.x1_mp3} label="download tempest.mp3" /></div>
         </Page>
       )
     case 'nebula':
       return (
         <Page eyebrow="Level 10">
-          <p className="lede">Look closely.</p>
+          <p className="lede">A photo remembers more than it shows.</p>
           <div className="mt-8"><Dl href={LINKS.x1_sky} label="download sky" /></div>
         </Page>
       )

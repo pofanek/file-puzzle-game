@@ -14,7 +14,7 @@ export default function Pyramid() {
           <div>1 · 73 75 6e</div>
           <div>2 · pa_teb_n.com/{paste}</div>
           <div>3 · {btoa(TOKENS.pyramid)}</div>
-          <p className="text-soft font-sans">The one that started it all will be last, the second will be in the middle, and the third will be first.</p>
+          <p className="text-soft font-sans">Every wall is an address. The one that started it all will be last, the second will be in the middle, and the third will be first.</p>
         </div>
       </Page>
     )

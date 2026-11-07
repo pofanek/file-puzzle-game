@@ -76,7 +76,7 @@ export const PUZZLES: Puzzle[] = [
     id: 'm3', level: 'medium', name: 'Shifted Statistics', layers: 2, external: [], answer: 'beacon', needs: [],
     teaser: { en: 'A shifted word and six lines of numbers.', pl: 'Przesunięte słowo i sześć linii liczb.' },
     start: () => 'shift into the decryption: ccch\n(the last letter is always five ahead of the others)\n\n1)  0  1  2  2  3  4\n2)  9  2  5  7  1\n3)  4  1  7  1  9  1  3\n4) 12 10 13 11 10\n5) 10 20 15  5 25\n6) 21  3 14 40  9',
-    hints: ['ccch is four words, shortened to first letters, then shifted.', 'Think of a maths class about averages.', 'Mean, median, mode, range, then start over.'],
+    hints: ['ccch is four words, shortened to first letters, then shifted.', 'Think of a maths class about averages.', 'Mean, median, mode, range, then start over. The six results are numbers; the alphabet has a count too.'],
   },
   {
     id: 'm4', level: 'medium', name: 'The Sonnet Index', layers: 2, external: ['Pastebin'], answer: 'bloom', needs: ['m4_pastebin'],
@@ -102,7 +102,7 @@ export const PUZZLES: Puzzle[] = [
     needs: ['h2_youtube_channel', 'h2_pastebin', 'h2_imgur'],
     teaser: { en: 'Three rooms, three words, one order.', pl: 'Trzy pokoje, trzy słowa, jedna kolejność.' },
     start: (c) => `Three rooms. Three words. Join them in this order.\nI.   ${c.L.h2_youtube_channel}\nII.  ${c.L.h2_pastebin}\nIII. ${c.L.h2_imgur}`,
-    hints: ['Room I: something about the text is *wrong*, and some words are wrong too.', 'Room I: correct = 0, wrong = 1, eight words per letter. Room II: breakfast.', 'Room III: the image is not empty. Turn the brightness up.'],
+    hints: ['Room I: something about the text is *wrong*, and some words are wrong too.', 'Room I: correct = 0, wrong = 1, eight words per letter. Room II: breakfast, and every letter has its own code.', 'Room III: the image is not empty. Turn the brightness up.'],
   },
   {
     id: 'h3', level: 'hard', name: 'Amber Terminal', layers: 5, external: ['Imgur'], answer: 'lighthouse', needs: ['h3_imgur'],
@@ -115,26 +115,26 @@ export const PUZZLES: Puzzle[] = [
     needs: ['h4_imgur', 'h4_pastebin', 'h4_youtube'],
     teaser: { en: 'Fill three rows from three sources.', pl: 'Wypełnij trzy rzędy z trzech źródeł.' },
     start: (c) => `Fill the rows: ${c.path(TOKENS.rows)}\nThe board knows the password: ${c.L.h4_imgur}\nThe paste: ${c.L.h4_pastebin}`,
-    hints: ['Each letter on the board is a square, and each square is two numbers.', 'The symbols +-<>[]. are a programming language with a rude name.', 'Change the caption language. For row 3, look at the columns.'],
+    hints: ['Each letter on the board is a square, and each square is two numbers.', 'The symbols +-<>[]. are a programming language with a rude name.', 'Change the caption language. For row 3: rows 1 and 2 never put black in the same column, so row 3 fills the empty columns.'],
   },
   {
     id: 'h5', level: 'hard', name: 'Tomb Raider', layers: 6, external: ['Pastebin'], answer: 'sandstorm', needs: ['h5_pastebin', 'h5_pastebin2'],
     teaser: { en: "An explorer's diary and a pyramid.", pl: 'Dziennik odkrywcy i piramida.' },
     start: (c) => `An explorer's diary: ${c.L.h5_pastebin}\n(the tomb wall lives here: ${c.path(TOKENS.pyramid)}/tombraider)`,
-    hints: ["The paste's body is shifted by three.", 'The paste title is a file name, encrypted with the key.', 'The carvings are in three different encodings. The last page uses runes.'],
+    hints: ["The paste's body is shifted by three.", 'The paste title is a file name, locked with the key (the classic keyed cipher).', 'The carvings are in three different encodings. Put the three decoded words after the site address, in the riddle\'s order. The last page uses runes.'],
   },
   // ---------- EXTREME ----------
   {
     id: 'x1', level: 'extreme', name: 'The Chain', layers: 11, external: [], answer: 'starlight', needs: ['x1_gif', 'x1_mp3', 'x1_sky'],
     teaser: { en: 'Ten web levels. Every answer is the next door.', pl: 'Dziesięć poziomów. Każda odpowiedź to kolejne drzwi.' },
     start: (c) => `${c.path(TOKENS.chain)}/begin\nEvery answer is a door. Type it where the last word of the address is.\nStuck? ${c.path(TOKENS.chain)}/rules`,
-    hints: ['Every answer goes into the address bar. Your browser developer tools are allowed and expected.', 'Pages have more than what you see: source, styles, console, file names, metadata.', 'Read the rules page carefully; one level uses it as a book.'],
+    hints: ['Every answer goes into the address bar. Your browser developer tools are allowed and expected.', 'Pages have more than what you see: source, styles, console, file names, metadata.', 'Read the rules page carefully; one level uses it as a book, counting letters only.'],
   },
   {
-    id: 'x2', level: 'extreme', name: 'Broken Prism', layers: 12, external: [], answer: 'spectrum', needs: ['x2_fish'],
-    teaser: { en: 'Light splits in three. Read it back by column.', pl: 'Światło rozszczepia się na trzy. Odczytaj kolumnami.' },
-    start: (c) => `Light splits here: ${c.path(TOKENS.prism)}\nThree colours, three codes. Light comes back together the way you read a column.`,
-    hints: ['Each colour has its own path. The source code and file names matter more than the pictures.', 'Red: comments in CSS; pixels are numbers. Green: divisibility, then dots. Blue: the page language.', 'Final: write the three codes on top of each other.'],
+    id: 'x2', level: 'extreme', name: 'Year Wheel', layers: 12, external: [], answer: 'solstice', needs: ['x2_leaf'],
+    teaser: { en: 'The year splits in three. Read it back by column.', pl: 'Rok dzieli się na trzy. Odczytaj kolumnami.' },
+    start: (c) => `The year turns here: ${c.path(TOKENS.year)}\nThree seasons, three codes. The year comes round the way you read a column.`,
+    hints: ['Each season has its own path. The source code and file names matter more than the pictures.', 'Autumn: comments in CSS; pixels are numbers. Spring: divisibility, then dots. Winter: the page language.', 'Final: write the three codes on top of each other, then read the columns.'],
   },
   {
     id: 'x3', level: 'extreme', name: 'The Vault', layers: 7, external: ['Imgur'], answer: 'chronos', needs: ['x3_imgur_rainbow', 'x3_imgur_mayan'],
@@ -151,7 +151,7 @@ export const PUZZLES: Puzzle[] = [
   {
     id: 'x5', level: 'extreme', name: 'Scripture Machine', layers: 8, external: ['Pastebin', 'Imgur'], answer: 'covenant', needs: ['x5_pastebin_1'],
     teaser: { en: 'Kryptos, a clock, a verse and a language from hell.', pl: 'Kryptos, zegar, werset i język z piekła.' },
-    start: (c) => `Exodus, Jim Sanborn:\nseg4 (64,74) -> a0z25\n1111\n0000\n11100000000\n0000\n${c.L.x5_pastebin_1}`,
+    start: (c) => `Exodus, Jim Sanborn:\nseg4 (64,74) -> a0z25\n(modern English; join the numbers, no spaces)\n1111\n0000\n11100000000\n0000\n${c.L.x5_pastebin_1}`,
     hints: ['Look up who Jim Sanborn is and what his fourth segment says.', 'The lamps tell the time, and the time is a chapter and verse.', 'Last paste: the eighth circle of Dante\'s Hell names a programming language.'],
   },
 ]

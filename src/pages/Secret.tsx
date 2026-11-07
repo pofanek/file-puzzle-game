@@ -8,7 +8,7 @@ const pages: Record<string, ReturnType<typeof lazy>> = {
   [TOKENS.rows]: lazy(() => import('../secret/Rows')),
   [TOKENS.pyramid]: lazy(() => import('../secret/Pyramid')),
   [TOKENS.chain]: lazy(() => import('../secret/Chain')),
-  [TOKENS.prism]: lazy(() => import('../secret/Prism')),
+  [TOKENS.year]: lazy(() => import('../secret/Year')),
   [TOKENS.vault]: lazy(() => import('../secret/Vault')),
 }
 

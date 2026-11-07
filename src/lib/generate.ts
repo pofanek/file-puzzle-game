@@ -12,26 +12,7 @@ export const CHAINS: Record<Level, { layers: Layer[]; outName: string }> = {
   extreme: { layers: ['xor', 'reverse', 'base64'], outName: 'challenge.txt' },
 }
 
-// How the answer is used. Clear on Easy, a riddle on Hard/Extreme (see vault: 04 Corruption and Repair Ideas).
-const METHOD: Record<Level, Record<Lang, string>> = {
-  easy: {
-    en: 'The file was XORed byte by byte with the secret word (lowercase, repeated as many times as needed).',
-    pl: 'Plik został zaszyfrowany operacją XOR bajt po bajcie z tajnym słowem (małe litery, powtarzane tyle razy, ile trzeba).',
-  },
-  medium: {
-    en: 'The word is the lock. Every byte of the file was combined with it, over and over. The name is also not what it was.',
-    pl: 'Słowo jest zamkiem. Każdy bajt pliku został z nim połączony, w kółko. Nazwa też nie jest oryginalna.',
-  },
-  hard: {
-    en: 'Two coats: the file was turned around, then locked with the word. Last on, first off.',
-    pl: 'Dwie warstwy: plik został odwrócony, a potem zamknięty słowem. Ostatnie na wierzchu, pierwsze zdejmij.',
-  },
-  extreme: {
-    en: 'Three coats. Last on, first off.',
-    pl: 'Trzy warstwy. Ostatnie na wierzchu, pierwsze zdejmij.',
-  },
-}
-
+// Exact repair steps per level. They go into instructions.txt and are also shown on the site as the "Repair" hint.
 export const REPAIR: Record<Level, Record<Lang, string>> = {
   easy: {
     en: 'Repair: XOR the file with the answer (lowercase), then give it back its original name.',
@@ -75,8 +56,13 @@ export async function generatePack(p: Puzzle, fileName: string, bytes: Uint8Arra
     '',
     '----',
     pl ? 'Odpowiedź do zagadki jest kluczem do pliku.' : 'The answer to the puzzle is the key to the file.',
-    METHOD[p.level][lang],
+    REPAIR[p.level][lang],
     keepExtInfo ? (pl ? `Oryginalne rozszerzenie: .${ext}` : `Original extension: .${ext}`) : '',
+    keepExtInfo
+      ? ''
+      : pl
+        ? 'Nie znasz oryginalnego rozszerzenia? Otwórz naprawiony plik w edytorze hex i sprawdź pierwsze bajty (sygnatura pliku), np. 89 50 4E 47 = PNG, FF D8 FF = JPG, 25 50 44 46 = PDF, 50 4B 03 04 = ZIP/DOCX/XLSX, 47 49 46 38 = GIF. Pliki tekstowe nie mają sygnatury: otwórz je jako tekst (.txt).'
+        : 'Do not know the original extension? Open the repaired file in a hex viewer and look at the first bytes (the file signature), e.g. 89 50 4E 47 = PNG, FF D8 FF = JPG, 25 50 44 46 = PDF, 50 4B 03 04 = ZIP/DOCX/XLSX, 47 49 46 38 = GIF. Plain text has no signature: open it as text (.txt).',
     '',
     pl ? 'Podpowiedzi są na stronie gry, przy wybranej zagadce.' : 'Hints are on the game website, under the puzzle you picked.',
     pl
