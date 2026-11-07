@@ -94,7 +94,7 @@ export const PUZZLES: Puzzle[] = [
   {
     id: 'h1', level: 'hard', name: 'Paper Trail', layers: 6, external: ['Mediafire'], answer: 'papertrail', needs: ['h1_mediafire_first_id'],
     teaser: { en: 'A chain of text files, each decoding to the next.', pl: 'Łańcuch plików tekstowych, każdy prowadzi do następnego.' },
-    start: (c) => `Follow the paper: file/${c.L.h1_mediafire_first_id}`,
+    start: (c) => `Follow the paper: https://www.mediafire.com/file/${c.L.h1_mediafire_first_id}`,
     hints: ["Every file's text tells you which cipher to use. Look for lines starting with HINT: or KEY:, and at odd capital letters or puns.", 'Mediafire links end with an ID; that is what every file decrypts to.', 'File 3: Pokémon number 184. File 5: count the repeated word.'],
   },
   {
