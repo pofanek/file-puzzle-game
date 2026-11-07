@@ -1,5 +1,7 @@
 # File Decryption Game
 
+https://file-puzzle.pages.dev/
+
 A browser game where **you break a file, then fix it by solving a puzzle**. Upload any file, pick one of 20 handmade puzzles, and the site corrupts your file and packs it into a ZIP together with the start of the puzzle. Solve the puzzle with outside tools (dCode, hex editors, CyberChef...), use the answer to repair the file, and upload it back to prove you won.
 
 Everything runs in your browser. There is no backend, no account and no upload to a server.
