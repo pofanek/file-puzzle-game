@@ -34,7 +34,7 @@ export default function Start() {
             <h1 className="h1">{t('hero.title1')}<br /><span className="accent-text">{t('hero.title2')}</span></h1>
           </Reveal>
           <Reveal delay={0.16}><p className="lede">{t('hero.lede')}</p></Reveal>
-          <Reveal delay={0.24} className="mt-12 grid gap-5 lg:grid-cols-[1fr_1.4fr]">
+          <Reveal delay={0.24} className="mt-12 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
             <div className="card lvl-card flex flex-col justify-between" style={{ ['--c' as string]: '74 222 128' }}>
               <div>
                 <h3 className="text-xl font-semibold tracking-tight">{t('mode.play')}</h3>
